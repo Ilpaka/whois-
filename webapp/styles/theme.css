@@ -1,0 +1,6 @@
+/* Extra theme overrides */
+:root {
+  --transition: .25s cubic-bezier(.2,.8,.2,1);
+}
+
+.btn, .card, .input { transition: all var(--transition); }

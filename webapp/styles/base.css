@@ -1,0 +1,143 @@
+:root {
+  --bg: #0f1115;
+  --fg: #e6e9ef;
+  --muted: #a0a6b2;
+  --card: #171a21;
+  --accent: #66d9e8;
+  --primary: #8bc34a;
+  --danger: #ef4e4e;
+  --shadow: rgba(0,0,0,.4);
+  --radius: 16px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f7fb;
+    --fg: #12151c;
+    --muted: #5b6270;
+    --card: #ffffff;
+    --accent: #0ea5e9;
+    --primary: #2563eb;
+    --danger: #dc2626;
+    --shadow: rgba(0,0,0,.1);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(1000px 400px at 50% -10%, rgba(102,217,232,.08), transparent 60%), var(--bg);
+  color: var(--fg);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Ubuntu, Cantarell;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  backdrop-filter: blur(10px);
+  background: color-mix(in oklab, var(--bg) 80%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--fg) 15%, transparent);
+}
+
+.logo { width: 28px; height: 28px; filter: drop-shadow(0 2px 8px var(--shadow)); margin-right: 8px; }
+.container { max-width: 920px; margin: 16px auto; padding: 0 12px; }
+.container.narrow { max-width: 600px; }
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px var(--shadow);
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid color-mix(in oklab, var(--fg) 12%, transparent);
+  animation: pop .26s ease;
+}
+@keyframes pop { from { transform: scale(.98); opacity: .0; } to { transform: scale(1); opacity: 1; } }
+
+h1, h2 { margin: 0 0 8px 0; letter-spacing: .2px; }
+h1 { font-size: 22px; }
+h2 { font-size: 18px; }
+
+.row { display: flex; gap: 8px; align-items: center; }
+.row.right { justify-content: flex-end; }
+.input {
+  flex: 0 0 auto;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in oklab, var(--fg) 10%, transparent);
+  background: color-mix(in oklab, var(--bg) 85%, transparent);
+  color: var(--fg);
+  outline: none;
+  transition: transform .08s ease, box-shadow .18s ease;
+}
+.input:focus { box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 25%, transparent); }
+.input.grow { flex: 1 1 auto; }
+
+.btn {
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--fg) 12%, var(--card));
+  color: var(--fg);
+  cursor: pointer;
+  transition: transform .08s ease, filter .2s ease, background .2s ease;
+  box-shadow: 0 6px 18px var(--shadow);
+}
+.btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn.primary { background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 70%, transparent), color-mix(in oklab, var(--primary) 40%, transparent)); }
+.btn.danger { background: linear-gradient(180deg, color-mix(in oklab, var(--danger) 70%, transparent), color-mix(in oklab, var(--danger) 40%, transparent)); }
+.btn.ghost { background: transparent; border: 1px solid color-mix(in oklab, var(--fg) 14%, transparent); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+.card.answer {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  position: relative;
+  min-height: 96px;
+}
+.card-inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform .5s;
+  transform-style: preserve-3d;
+}
+.card.flip .card-inner { transform: rotateY(180deg); }
+.card-face {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px;
+}
+.card-face.back { transform: rotateY(180deg); background: linear-gradient(160deg, color-mix(in oklab, var(--accent) 40%, transparent), transparent); }
+
+.footer { text-align: center; padding: 16px; color: var(--muted); }
+
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+.hint { color: var(--muted); font-size: 13px; margin-top: 6px; }
+.error { color: var(--danger); min-height: 18px; }
+
+.room-badge { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.status-dot { color: var(--primary); }
+
+.supercards { font-weight: 700; }
+
+.empty {
+  color: var(--muted);
+  border: 2px dashed color-mix(in oklab, var(--fg) 20%, transparent);
+  border-radius: 14px;
+  padding: 24px;
+  text-align: center;
+}
+
+.modal-overlay { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.45); }
+.modal-overlay.hidden { display: none; }
+.modal { width: min(520px, 92vw); }

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Комната — Who Said That?</title>
+  <link rel="stylesheet" href="/styles/base.css"/>
+  <link rel="stylesheet" href="/styles/theme.css"/>
+</head>
+<body>
+<header class="app-header">
+  <a href="/" class="btn ghost">← Назад</a>
+  <div class="room-badge">
+    <span id="roomCode"></span>
+    <span id="roomStatus" class="status-dot">•</span>
+  </div>
+  <div class="supercards">
+    ⚡<span id="superCount">3</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>Вопрос раунда</h2>
+    <div id="questionBlock" class="question"></div>
+    <div class="row">
+      <input id="questionInput" class="input grow" maxlength="200" placeholder="Введите вопрос..."/>
+      <button id="btnSetQuestion" class="btn">Задать</button>
+    </div>
+    <div class="hint">Подсказка: вопрос задаёт ведущий, но в дев-режиме можно всем.</div>
+  </section>
+
+  <section class="card">
+    <h2>Ваш ответ</h2>
+    <div class="row">
+      <input id="answerInput" class="input grow" maxlength="300" placeholder="Введите ответ..."/>
+      <button id="btnSendAnswer" class="btn primary">Отправить</button>
+    </div>
+    <div class="hint">Ответы видны всем анонимно.</div>
+  </section>
+
+  <section class="card">
+    <h2>Ответы</h2>
+    <div id="answersList" class="grid"></div>
+    <div id="emptyAnswers" class="empty">Пока нет ответов. Будьте первым!</div>
+  </section>
+</main>
+
+<div id="toastContainer"></div>
+<div id="modalContainer" class="modal-overlay hidden">
+  <div class="modal card">
+    <div id="modalText"></div>
+    <div class="row right">
+      <button id="modalCancel" class="btn ghost">Отмена</button>
+      <button id="modalOk" class="btn danger">Вскрыть</button>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/state.js" type="module"></script>
+<script src="/scripts/api.js" type="module"></script>
+<script src="/scripts/ui.js" type="module"></script>
+<script src="/scripts/socket.js" type="module"></script>
+<script src="/scripts/main.js" type="module"></script>
+</body>
+</html>

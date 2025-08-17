@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Who Said That? — Lobby</title>
+  <link rel="stylesheet" href="/styles/base.css"/>
+  <link rel="stylesheet" href="/styles/theme.css"/>
+</head>
+<body>
+<header class="app-header">
+  <img src="/assets/logo.svg" alt="logo" class="logo"/>
+  <h1>Who Said That?</h1>
+</header>
+
+<main class="container narrow">
+  <section class="card">
+    <h2>Создать комнату</h2>
+    <p>Станьте ведущим и пригласите друзей кодом.</p>
+    <button id="btnCreate" class="btn primary">Создать</button>
+    <div id="createResult" class="mono"></div>
+  </section>
+
+  <section class="card">
+    <h2>Войти по коду</h2>
+    <div class="row">
+      <input id="roomCode" maxlength="6" placeholder="ABC123" class="input"/>
+      <button id="btnJoin" class="btn">Войти</button>
+    </div>
+    <p id="joinError" class="error"></p>
+  </section>
+</main>
+
+<footer class="footer">
+  <small>Мини-игра для компаний. Работает прямо в Телеграм.</small>
+</footer>
+
+<script src="/scripts/state.js" type="module"></script>
+<script src="/scripts/api.js" type="module"></script>
+<script src="/scripts/ui.js" type="module"></script>
+<script src="/scripts/main.js" type="module"></script>
+</body>
+</html>
